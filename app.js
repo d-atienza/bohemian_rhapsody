@@ -58,7 +58,7 @@ app.get("/diceroll", (req, res) => {
 
 function roll(arr) {
   const index = Math.floor(Math.random() * arr.length);
-  return "... and you have rolled a " + arr[index];
+  return arr[index];
 }
 
 //music query
@@ -93,4 +93,45 @@ app.get("/songinfo", async (req, res) => {
   let result = await dbDisplay();
 
   res.render("songinfo", { songinfo: result });
+});
+
+//////////////////////////////
+
+// middleware & static files
+app.use(express.static("public")); // this allows files to be public
+
+// route parameters
+// 13.1 exercise (reverse)
+app.get("/reverse/:word", (req, res) => {
+  const givenWord = req.params.word;
+
+  res.send(reverse(givenWord));
+});
+
+const reverse = (word) => {
+  let reversedWord = word.split("").reverse().join("");
+  return reversedWord;
+};
+
+// 13.2 exercise (remove vowels)
+app.get("/removeVowels/:word", (req, res) => {
+  const givenWord = req.params.word;
+  res.send(removeVowels(givenWord));
+});
+
+const removeVowels = (word) => {
+  const noVowels = word.replace(/[aeiou]/gi, "");
+  return noVowels;
+};
+
+// 13.3 exercise (addition)
+app.get("/add/:num1/:num2", (req, res) => {
+  const strNum1 = req.params.num1;
+  const strNum2 = req.params.num2;
+
+  const firstNum = parseInt(strNum1);
+  const secondNum = parseInt(strNum2);
+
+  let sum = firstNum + secondNum;
+  res.send(sum.toString());
 });
