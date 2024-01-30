@@ -5,12 +5,25 @@
 <br />
 <br />
 
-<% if (songinfo.length > 0) { %>
-<% songinfo.forEach((song) => { %>
-<p><%= song.song_id %></p>
-<p><%= song.title %></p>
-<p><%= song.album %></p>s
-<p><%= song.release_year %></p>
-<p><%= song.duration_seconds %></p>
-<%})%>
-<% } %>
+<h2>Queen Songs</h2>
+
+<table>
+  <tr>
+    <th>Song ID</th>
+    <th>Title</th>
+    <th>Album</th>
+    <th>Release Year</th>
+    <th>Duration (seconds)</th>
+  </tr>
+  <% if (songinfo.length > 0) { %>
+  <% songinfo.forEach((song) => { %>
+  <tr>
+    <td><%= song.song_id %></td>
+    <td><%= song.title %></td>
+    <td><%= song.album %></td>
+    <td><%= song.release_year %></td>
+    <td><%= song.duration_seconds %></td>
+  </tr>
+  <%})%>
+  <% } %>
+</table>
