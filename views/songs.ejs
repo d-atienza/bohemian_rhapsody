@@ -1,0 +1,15 @@
+<%- include('./partials/nav.ejs')%>
+<br />
+<br />
+<h4>They also have...</h4>
+<ol>
+
+  <% if (songs.length > 0) { %>
+  <% songs.forEach((song) => { %>
+  <li>
+    <p><%= song %></p>
+  </li>
+  <% }) %>
+  <% } %>
+
+</ol>

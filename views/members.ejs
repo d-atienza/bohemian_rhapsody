@@ -1,0 +1,27 @@
+<%- include('./partials/nav.ejs')%>
+
+<br />
+<br />
+<br />
+<br />
+
+<center>
+
+  <h1>Greatest Band Members of All Time!</h1>
+  <!-- javascript for cycling through members -->
+  <% if (members.length > 0) { %>
+  <% members.forEach((member) => { %>
+
+  <h3><%= member.name %></h3>
+  <p><%= member.instrument %></p>
+
+  <%})%>
+  <% } else { %>
+  <p>There are no blogs to display...</p>
+  <% } %>
+
+
+</center>
+
+<h3></h3>
+<p></p>

@@ -1,0 +1,16 @@
+<%- include('./partials/nav.ejs')%>
+
+<br />
+<br />
+<br />
+<br />
+
+<% if (songinfo.length > 0) { %>
+<% songinfo.forEach((song) => { %>
+<p><%= song.song_id %></p>
+<p><%= song.title %></p>
+<p><%= song.album %></p>s
+<p><%= song.release_year %></p>
+<p><%= song.duration_seconds %></p>
+<%})%>
+<% } %>
