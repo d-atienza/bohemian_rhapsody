@@ -63,8 +63,10 @@ function roll(arr) {
 
 //music query
 //////////////////////////////
+
+// beekeeper studio db
 const { Pool } = require("pg");
-const pool = makeDBConnectionPool("QueenSongsDB");
+//const pool = makeDBConnectionPool("QueenSongsDB");
 
 function makeDBConnectionPool(dbName) {
   //Understanding the details is not important here.
@@ -72,6 +74,13 @@ function makeDBConnectionPool(dbName) {
     database: dbName,
   });
 }
+
+//////////////////////////////
+
+//elephant sql db
+const dotenv = require("dotenv");
+dotenv.config(); // looks for env file with url
+const pool = new Pool({ connectionString: process.env.DATABASE_URL }); // keeps your password and url a secret!
 
 async function dbDisplay() {
   const dbResult = await pool.query("select * from queen_songs");
