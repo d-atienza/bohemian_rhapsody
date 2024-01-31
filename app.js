@@ -135,3 +135,32 @@ app.get("/add/:num1/:num2", (req, res) => {
   let sum = firstNum + secondNum;
   res.send(sum.toString());
 });
+
+// 13.4 exercise (find stuff on database)
+app.get("/songinfo/:song_id", async (req, res) => {
+  const dbSongID = req.params.song_id; //equals 1
+
+  if (dbSongID > 0 && dbSongID <= 10) {
+    const songResult = await pool.query(
+      "select * from queen_songs where song_id = $1",
+      [dbSongID]
+    );
+
+    res.send(songResult.rows);
+  } else {
+    res.send("Please choose a Song ID between 1 to 10");
+  }
+});
+
+// 14.1 exercise (youtube form)
+app.get("/youtube", (req, res) => {
+  //https://www.youtube.com/watch?v=JksX4mN5H3w&t=343s
+  res.render("youtube");
+});
+
+// 14.2 exercise (faves form)
+app.get("/faves", (req, res) => {
+  res.render("faves", { favsObj: req.query });
+});
+
+// 14.3

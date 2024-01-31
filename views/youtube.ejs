@@ -1,0 +1,18 @@
+<%- include('./partials/nav.ejs')%>
+
+<br />
+<br />
+<br />
+<br />
+<!-- https://www.youtube.com/watch ? v=JksX4mN5H3w & t=343s -->
+<!-- i think the ? is to return undefined or throw an error -->
+<!-- the value of 5m43s has been turned into seconds -->
+<center>
+  <h3>go to a specific time in a youtube video!</h3>
+  <form action="https://www.youtube.com/watch" method="GET">
+    <input type="text" name="v" value="JksX4mN5H3w" placeholder="video id" />
+    <input type="text" name="t" value="5m43s" placeholder="timestamp e.g. 1m12s" />
+    <button type="submit">Go!</button>
+  </form>
+  <h5><i>( try 5m43s or 6m13s )</i></h5>
+</center>
