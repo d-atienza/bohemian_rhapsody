@@ -83,7 +83,7 @@ dotenv.config(); // looks for env file with url
 const pool = new Pool({ connectionString: process.env.DATABASE_URL }); // keeps your password and url a secret!
 
 async function dbDisplay() {
-  const dbResult = await pool.query("select * from queen_songs");
+  const dbResult = await pool.query("select * from queen_songs limit 10");
   const songArray = dbResult.rows;
   return songArray;
 }
@@ -163,4 +163,18 @@ app.get("/faves", (req, res) => {
   res.render("faves", { favsObj: req.query });
 });
 
-// 14.3
+// 14.3 exercise (queen database)
+app.get("/songsearch", async (req, res) => {
+  const searchTerm = req.query.searchTerm;
+
+  const value = [`%${searchTerm}%`];
+
+  const searchResult = await pool.query(
+    "select * from queen_songs where title ilike $1",
+    value
+  );
+
+  let resultsObj = searchResult.rows;
+
+  res.render("songsearch", { songObj: resultsObj });
+});
